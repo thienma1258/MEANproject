@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <base href="/" >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat Online</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+ <!-- Angular -->
+<script type="text/javascript" src="assets/js/angular.js"></script>
+   <script type="text/javascript" src="assets/js/angular-route.js"></script>
+   <script type="text/javascript" src="https://cdn.rawgit.com/adonespitogo/angular-base64-upload/master/src/angular-base64-upload.js"></script>
+<!-- Angular config route -->
+<script src="app/route.js"></script>
+<script src="app/app.js"></script>
+<!-- Angular Controller -->
+<script src="app/controllers/mainCtrl.js"></script>
+<script src="app/controllers/userCtrl.js"></script>
+<script src="app/controllers/chatCtrl.js"></script>
+<!-- Angular services -->
+<script src="app/services/Authservices.js"></script>
+<script src="app/services/Userservices.js"></script>
+<script src="app/services/Chatservices.js"></script>
+<!-- jquery -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- boostrap  -->
+<script src="assets/js/bootstrap.min.js"></script>
+</head>
+<body ng-app="userApp">
+<div class="col-sm-12 col-lg-12 col-md-12">
+<div ng-view style="width:100%"></div>
+<script src="../socket.io/socket.io.js"></script>
+<script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/ngAlertify.js"></script>
+
+<script>
+
+</script>
+</div>
+</body>
+</html>

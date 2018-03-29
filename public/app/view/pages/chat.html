@@ -1,0 +1,178 @@
+<!--3rd Party Fonts & Icons-->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="styles/chat.css">
+<script type="text/javascript-lazy" src='assets/js/scrolldown.js'></script>
+<div class="container fill" >
+
+        <div class="information-user" >
+                <!-- <h1 class="title-name">{{chat.user.name}}</h1>
+                <h1 class="title-email">{{chat.user.email}}</h1> -->
+             <div> 
+                <h3 style="">{{chat.user.name}}</h3>
+                <h3 style="">{{chat.user.email}}</h3>
+            </div>
+                <img class="represent-images" src="{{chat.user.image}}">
+
+            </div>
+            <div class="clearfix"></div>
+    <div class="row chat-wrap">
+
+        <!-- Contacts & Conversations -->
+        <div class="col-sm-3 panel-wrap">
+
+            <!-- Overlay Menu / Contacts -->
+            <div class="col-sm-12 section-wrap collapse" id="Contacts">
+
+
+
+            </div>
+
+            <!--Left Menu / Conversation List-->
+            <div class="col-sm-12 section-wrap">
+
+                <!--Header-->
+                <div class="row header-wrap">
+                    <div class="chat-header col-sm-12">
+                        <h4 id="username">List online user</h4>
+                        <div class="header-button">
+                            <a class="btn pull-right" href="#Contacts" data-toggle="collapse">
+                                <i class="fa fa-pencil-square-o fa-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Conversations-->
+                <div class="row content-wrap" style="overflow:scroll;height:500px;">
+                    <div class="conversation btn" ng-repeat="user in chat.scope.listuser">
+                        <div class="media-body">
+                            <img ng-src="{{user.image}}" class="online-image">
+                            <div class="pull-right information">
+                            <h5 class="media-heading" id="contactName">{{user.name}}</h5>
+                            <h5 class="media-heding" id="username">{{user.username}}</h5>
+                            <small class="pull-right time">online</small>
+                            </div>
+                        </div>
+                    </div>
+                  <div>
+                </div>
+
+            </div>
+            </div>
+        </div>
+
+        <!-- Messages & Info -->
+        <div class="col-sm-6     panel-wrap">
+
+            <!--Main Content / Message List-->
+            <div class="col-sm-12 section-wrap" id="Messages">
+
+                <!--Header-->
+                <div class="row header-wrap">
+                    <div class="chat-header col-sm-12">
+                        <h4>Conversation Title</h4>
+                        <div class="header-button">
+                            <a class="btn pull-right info-btn">
+                                <i class="fa fa-info-circle fa-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Messages-->
+                <div class="row content-wrap messages" style="height:500px;">
+                    <div class="msg" ng-repeat="data in chat.scope.listchat">
+                        <div class="media-body" >
+                            <small class="pull-right time"><i class="fa fa-clock-o"></i>{{data.time|  date:'HH:mm:ss dd-MM-yyyy ' }}</small>
+
+                            <h5 class="media-heading">{{data.name}}</h5>
+                            <img ng-src="{{data.image}}" class="chat-image">
+                            <small class="chat-content">{{data.content}}</small>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!--Message box & Send Button-->
+                <div class="row send-wrap">
+                   <div class="options-send">
+                    <a class="images-send">   </a>
+                    <a class="start-challenge"  data-toggle="modal" data-target="#myModal"></a>
+                   </div>
+                    <div class="send-message">
+                        <div class="message-text">
+                            <textarea ng-model="chat.text" class="no-resize-bar form-control" rows="2" placeholder="Write a message..."></textarea>
+                        </div>
+                        <div class="send-button">
+                            <a class="btn"  ng-click="chat.send(chat.text)">Send <i class="fa fa-send"></i></a>
+                        </div>
+                    </div>
+                    <p class="help-block" style="color:red" *ng-show="chat.error">{{chat.error}}</p>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ranking board -->
+        <div class="col-sm-3 ranking-board">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Ranking</div>
+                <div class="panel-body">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Title and name</div>
+                        <div class="panel-body">Panel Content</div>
+                      </div> 
+                </div>
+              </div>
+
+
+                        </div>
+    </div>
+</div>
+<!-- Trigger the modal with a button -->
+<div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+             
+              <h4 class="modal-title">Bắt đầu thử thách</h4>
+            </div>
+            <div class="model-body">
+    <label for="number">Number Question</label>
+    <select ng-model="chat.numberquestion" class="form-control" >
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="12">12</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+    </select>
+    <label for="category">Category</label>
+    <select ng-model="chat.category" class="form-control"  >
+        <option ng-repeat="(key,category) in chat.scope.listcategory" value="{{key}}">{{category}}</option>    
+    </select> 
+    <label for="category">Difficulty</label>
+    <select ng-model="chat.difficult" class="form-control"> 
+        <option selected value="easy">Easy</option>
+        <option>Normal</option> 
+        <option>Hard</option> </select>
+    <label for="Time">Time</label>
+    <select ng-model="chat.time" class="form-control">
+         <option selected value="5">5p</option><option value="10">10p</option> 
+         <option value="15">15p</option> </select>
+         <div class="clearfix"></div>
+
+
+</div>
+<div class="modal-footer">
+        <button style="display: inherit;width:auto;float:right" class="btn btn-success btn-lg" ng-click="chat.startchallenge(chat.numberquestion,chat.category,chat.difficult,chat.time)">
+                Mời mọi người tham gia
+            </button>
+        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+      </div>
+</div>
+        </div>
+</div>

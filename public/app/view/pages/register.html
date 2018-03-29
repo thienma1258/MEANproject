@@ -1,0 +1,69 @@
+<style>
+    .title-image{
+        width: 200px;
+        height: 200px;
+    }
+</style>
+<div class="page-header"><h1>User Registration</h1></div>
+
+<form name="regForm" ng-submit="register.regUser(regData)" novalidate >
+
+<div ng-class="{'has-success':(regForm.name.$valid&&!regForm.name.$pristine),'has-error':(!regForm.name.$valid&&!regForm.name.$pristine)||(regForm.$submitted&&!regForm.name.$valid)}">
+       <label for="name">Name</label>
+   <input class="form-control" type="text" name="name" ng-model="register.regData.name" ng-pattern="/^[\D_ ]{3,30}$/" ng-minlength="3" ng-maxlength="30" required  placeholder="Please enter name">
+   <p class="help-block" ng-show="(!regForm.name.$pristine && regForm.name.$error.required)">This field is  required</p>
+   <ul  ng-show="(!regForm.name.$pristine && regForm.name.$error.pattern)||(regForm.$submitted&&regForm.name.$error.pattern)" class="help-block">
+       <!-- <li>Must have a space in between first and last name</li> -->
+       <li>Must not contain any number and at least 3 characters and maximum 30 characters</li>
+   </ul>
+</div>
+<div ng-class="{'has-success':(regForm.email.$valid&&!regForm.email.$pristine),'has-error':(!regForm.email.$valid&&!regForm.email.$pristine)||(regForm.$submitted&&!regForm.email.$valid)}">
+   <label for="email">Email</label>
+   <input class="form-control" type="email" name="email" ng-model="register.regData.email" ng-pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/" required  placeholder="Please enter Email">
+   <p class="help-block" ng-show="(!regForm.email.$pristine && regForm.email.$error.required)">This field is  required</p>
+   <ul   ng-show="(!regForm.email.$pristine && regForm.email.$error.pattern)||(regForm.$submitted&&regForm.email.$error.pattern)" class="help-block">
+        <!-- <li>Must have a space in between first and last name</li> -->
+        <li>Email doesn't valid</li>
+    </ul>
+</div>
+   <label for="username">Username</label>
+   <input class="form-control"  ng-model="register.regData.username"   type="text" name="username"  placeholder="Please enter user">
+<label for="password">Password </label>
+
+   <input class="form-control" ng-model="register.regData.password"   type="password" name="password"  placeholder="Please enter password">
+  <label for="imagetitle">Avarta</label>
+   <input type="file" ng-model="register.regData.image" base-sixty-four-input accept="image/*" />
+
+   <img ng-src="data:image/jpeg;base64,{{register.regData.image.base64}}" class="title-image">
+
+   <input class="btn btn-primary btn-lg pull-right" type="submit" name="" style="margin:20px" value="Register">
+
+</form>
+<!-- <span>{{regForm}}</span> -->
+</br>
+<div class="jumbotron text-center" ng-show="register.Loading">
+    <div id="fountainG">
+        <div id="fountainG_1" class="fountainG"></div>
+        <div id="fountainG_2" class="fountainG"></div>
+        <div id="fountainG_3" class="fountainG"></div>
+        <div id="fountainG_4" class="fountainG"></div>
+        <div id="fountainG_5" class="fountainG"></div>
+        <div id="fountainG_6" class="fountainG"></div>
+        <div id="fountainG_7" class="fountainG"></div>
+        <div id="fountainG_8" class="fountainG"></div>
+    </div>
+</div>
+
+
+</br>
+<div class="row show-hide-message" ng-show="register.successMsg">
+   <div class="alert alert-success">
+       {{register.successMsg}}
+   </div>
+</div>
+
+<div class="row show-hide-message" ng-show="register.errorMsg">
+   <div class="alert alert-danger">
+       {{register.errorMsg}}
+   </div>
+</div>
